@@ -5,10 +5,10 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent">
-        <TextView
+        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Group Tasks"
+            android:text="Group Task Title"
             android:id="@+id/tv_gtasks"/>
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
@@ -21,9 +21,8 @@
             android:id="@+id/btn_create_grp_list"
             android:layout_width="100dp"
             android:layout_height="50dp"
-            android:layout_alignParentEnd="true"
-            android:layout_marginBottom="12dp"
-            android:layout_marginEnd="12dp"
+            android:layout_alignTop="@+id/btn_add_task"
+            android:layout_toStartOf="@+id/btn_add_task"
             android:text="Create List" />
         <Button
             android:id="@+id/btn_add_task"
