@@ -22,7 +22,6 @@
         <activity android:name=".Solo.SoloAddActivity"></activity>
         <activity android:name=".Solo.SoloEditActivity"></activity>
         <activity android:name=".SelectionAddActivity"></activity>
-
     </application>
 
 </manifest>

@@ -4,20 +4,17 @@
     tools:showIn="navigation_view">
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_solo"
+            android:id="@+id/nav_camera"
             android:icon="@drawable/ic_menu_camera"
             android:title="Solo" />
         <item
-            android:id="@+id/nav_group"
+            android:id="@+id/nav_gallery"
             android:icon="@drawable/ic_menu_gallery"
             android:title="Group-to-do" />
         <item
-            android:id="@+id/nav_seq"
+            android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Sequential-to-do" />
-        <item
-            android:id="@+id/nav_viewall"
-            android:title="View All" />
     </group>
     <item android:title="Communicate">
         <menu>
