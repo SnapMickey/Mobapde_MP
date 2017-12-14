@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <Button
+        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:text="SOLO TASK"
+        android:id="@+id/solotaskBtn" />
+
+    <Button
+        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:text="GROUP TASK"
+        android:id="@+id/grouptaskBtn"
+        android:layout_below="@+id/solotaskBtn"/>
+
+    <Button
+        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:text="SEQUENCE TASK"
+        android:id="@+id/sequencetaskBtn"
+        android:layout_below="@+id/grouptaskBtn"/>
+</RelativeLayout>
+</android.support.constraint.ConstraintLayout>
