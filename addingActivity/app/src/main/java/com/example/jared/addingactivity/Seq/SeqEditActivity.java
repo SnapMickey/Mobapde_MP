@@ -1,4 +1,4 @@
-package com.example.jared.addingactivity.Group;
+package com.example.jared.addingactivity.Seq;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,13 +15,11 @@ import com.example.jared.addingactivity.R;
 import com.example.jared.addingactivity.Solo.SoloAddActivity;
 import com.example.jared.addingactivity.Task;
 
-import java.util.ArrayList;
-
 /**
  * Created by Jared on 12/15/2017.
  */
 
-public class GroupEditActivity extends AppCompatActivity {
+public class SeqEditActivity extends AppCompatActivity {
 
     public static final int REQUEST_ADD_TASK = 0;
     public static final int REQUEST_EDIT_TASK = 1;
@@ -49,7 +47,7 @@ public class GroupEditActivity extends AppCompatActivity {
         int listId = getIntent().getExtras().getInt("listId");
         list = dbHelper.queryList(listId);
 
-        GroupTasksAddAdapter adapter = new GroupTasksAddAdapter(list, this);
+        SeqTasksAddAdapter adapter = new SeqTasksAddAdapter(list, this);
 
         rvTasks.setAdapter(adapter);
         rvTasks.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL, false));
@@ -74,7 +72,7 @@ public class GroupEditActivity extends AppCompatActivity {
         addTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent page = new Intent(GroupEditActivity.this, SoloAddActivity.class);
+                Intent page = new Intent(SeqEditActivity.this, SoloAddActivity.class);
                 page.putExtra("type","add");
                 page.putExtra("requestCode", REQUEST_ADD_TASK);
                 startActivityForResult(page,REQUEST_ADD_TASK);

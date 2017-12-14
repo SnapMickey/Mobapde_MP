@@ -25,6 +25,7 @@ import java.util.ArrayList;
 public class GroupAddActivity extends AppCompatActivity {
 
     public static final int REQUEST_ADD_TASK = 0;
+    public static final int REQUEST_EDIT_TASK = 1;
 
     List list;
     TextView tvListName;
@@ -46,11 +47,24 @@ public class GroupAddActivity extends AppCompatActivity {
         addTask = findViewById(R.id.btn_add_task);
         rvTasks = findViewById(R.id.rv_gtasks);
 
+
         list = new List();
         list.setDone(false);
         list.setType("grp");
         list.setTitle("");
         list.setTasks(new ArrayList<Task>());
+
+        /**TEST*/
+        Task t = new Task();
+        t.setDescription("JARED WINS");
+        t.setDone(false);
+        t.setSeq(-1);
+        t.setLongtitude(0);
+        t.setLatitude(0);
+
+        list.addTasks(t);
+
+        /**END_TEST*/
 
         GroupTasksAddAdapter adapter = new GroupTasksAddAdapter(list, this);
 
@@ -69,6 +83,8 @@ public class GroupAddActivity extends AppCompatActivity {
                     t.setListId((int)listId);
                     dbHelper.insertTask(t);
                 }
+
+                finish();
             }
         });
 

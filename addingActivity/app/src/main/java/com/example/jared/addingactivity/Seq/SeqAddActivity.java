@@ -1,4 +1,4 @@
-package com.example.jared.addingactivity.Group;
+package com.example.jared.addingactivity.Seq;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,17 +18,17 @@ import com.example.jared.addingactivity.Task;
 import java.util.ArrayList;
 
 /**
- * Created by Jared on 12/15/2017.
+ * Created by Jared on 12/12/2017.
  */
 
-public class GroupEditActivity extends AppCompatActivity {
+public class SeqAddActivity extends AppCompatActivity {
 
     public static final int REQUEST_ADD_TASK = 0;
     public static final int REQUEST_EDIT_TASK = 1;
 
     List list;
     TextView tvListName;
-    Button applyButton, addTask;
+    Button createButton, addTask;
     RecyclerView rvTasks;
 
     DatabaseHelper dbHelper;
@@ -42,19 +42,35 @@ public class GroupEditActivity extends AppCompatActivity {
         dbHelper = new DatabaseHelper(getBaseContext());
 
         tvListName = findViewById(R.id.tv_gtasks);
-        applyButton = null; //findViewById(R.id.btn_create_grp_list);
+        createButton = findViewById(R.id.btn_create_grp_list);
         addTask = findViewById(R.id.btn_add_task);
         rvTasks = findViewById(R.id.rv_gtasks);
 
-        int listId = getIntent().getExtras().getInt("listId");
-        list = dbHelper.queryList(listId);
 
-        GroupTasksAddAdapter adapter = new GroupTasksAddAdapter(list, this);
+        list = new List();
+        list.setDone(false);
+        list.setType("seq");
+        list.setTitle("");
+        list.setTasks(new ArrayList<Task>());
+
+        /**TEST*/
+        Task t = new Task();
+        t.setDescription("JARED WINS");
+        t.setDone(false);
+        t.setSeq(-1);
+        t.setLongtitude(0);
+        t.setLatitude(0);
+
+        list.addTasks(t);
+
+        /**END_TEST*/
+
+        SeqTasksAddAdapter adapter = new SeqTasksAddAdapter(list, this);
 
         rvTasks.setAdapter(adapter);
         rvTasks.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL, false));
 
-        applyButton.setOnClickListener(new View.OnClickListener() {
+        createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -74,7 +90,7 @@ public class GroupEditActivity extends AppCompatActivity {
         addTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent page = new Intent(GroupEditActivity.this, SoloAddActivity.class);
+                Intent page = new Intent(SeqAddActivity.this, SoloAddActivity.class);
                 page.putExtra("type","add");
                 page.putExtra("requestCode", REQUEST_ADD_TASK);
                 startActivityForResult(page,REQUEST_ADD_TASK);
@@ -94,6 +110,7 @@ public class GroupEditActivity extends AppCompatActivity {
 
                     Task newTask = new Task();
                     newTask.setDone(false);
+                    newTask.setSeq(-1);
                     newTask.setLatitude(lat);
                     newTask.setLongtitude(lng);
                     newTask.setListId(-1);
