@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/addingActivity.iml" filepath="$PROJECT_DIR$/addingActivity.iml" />
+      <module fileurl="file://C:\Users\Pons\Documents\GitHub\Mobapde_MP\addingActivity\addingActivity.iml" filepath="C:\Users\Pons\Documents\GitHub\Mobapde_MP\addingActivity\addingActivity.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\Users\Pons\Documents\GitHub\Mobapde_MP\addingActivity\app\app.iml" filepath="C:\Users\Pons\Documents\GitHub\Mobapde_MP\addingActivity\app\app.iml" />
     </modules>
   </component>
 </project>
