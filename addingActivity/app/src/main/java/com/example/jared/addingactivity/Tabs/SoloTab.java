@@ -3,6 +3,7 @@ package com.example.jared.addingactivity.Tabs;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +19,8 @@ public class SoloTab extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        Log.d(TAG, "onCreateView: Starting");
         View view = inflater.inflate(R.layout.view_solo,container,false);
-        return super.onCreateView(inflater, container, savedInstanceState);
+        return view;
     }
 }

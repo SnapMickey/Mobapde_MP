@@ -84,7 +84,8 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_solo) {
-            // Handle the camera action
+            Intent page = new Intent(MainActivity.this,ViewTasks.class);
+            startActivity(page);
         } else if (id == R.id.nav_group) {
 
         } else if (id == R.id.nav_seq) {
