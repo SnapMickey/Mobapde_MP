@@ -21,6 +21,8 @@
         <activity android:name=".Group.GroupEditActivity"></activity>
         <activity android:name=".Solo.SoloAddActivity"></activity>
         <activity android:name=".Solo.SoloEditActivity"></activity>
+        <activity android:name=".Seq.SeqAddActivity"></activity>
+        <activity android:name=".Seq.SeqEditActivity"></activity>
         <activity android:name=".SelectionAddActivity"></activity>
         <activity android:name=".ViewTasks"></activity>
 

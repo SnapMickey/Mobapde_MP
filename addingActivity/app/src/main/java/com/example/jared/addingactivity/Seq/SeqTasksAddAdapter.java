@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.jared.addingactivity.List;
 import com.example.jared.addingactivity.R;
@@ -29,7 +30,7 @@ public class SeqTasksAddAdapter extends RecyclerView.Adapter<SeqTasksAddAdapter.
 
     @Override
     public SeqAddTaskViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.task_list, parent, false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.task_list_seq, parent, false);
         return new SeqAddTaskViewHolder(itemView);
     }
 
@@ -37,7 +38,7 @@ public class SeqTasksAddAdapter extends RecyclerView.Adapter<SeqTasksAddAdapter.
     public void onBindViewHolder(SeqAddTaskViewHolder holder, int position) {
         final int index = position;
         final Task task = list.getTasks().get(index);
-        holder.etTaskDescription.setText(task.getDescription());
+        holder.tvTaskDescription.setText(task.getDescription());
 
         holder.btnRemove.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,12 +67,14 @@ public class SeqTasksAddAdapter extends RecyclerView.Adapter<SeqTasksAddAdapter.
     /** VIEW HOLDER */
     public class SeqAddTaskViewHolder extends RecyclerView.ViewHolder{
         Button btnRemove, btnEdit;
-        EditText etTaskDescription;
+        TextView tvTaskDescription;
+        TextView tvSeq;
         View container;
 
         public SeqAddTaskViewHolder(View itemView) {
             super(itemView);
-            etTaskDescription = null;
+            tvTaskDescription = itemView.findViewById(R.id.taskDesc);
+            tvSeq = itemView.findViewById(R.id.taskNum);
             btnRemove = itemView.findViewById(R.id.btn_deletetask);
             btnEdit = itemView.findViewById(R.id.btn_edittask);
             container = itemView;

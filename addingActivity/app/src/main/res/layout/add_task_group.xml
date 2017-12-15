@@ -9,7 +9,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Group Task Title"
-            android:id="@+id/tv_gtasks"/>
+            android:id="@+id/et_gtasks"/>
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
