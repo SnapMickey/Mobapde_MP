@@ -1,9 +1,16 @@
 package com.example.jared.addingactivity;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,13 +20,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener{
+        implements NavigationView.OnNavigationItemSelectedListener {
+
+    public static SupportMapFragment maps;
+    public static GoogleMap map;
+    public static GPSTracker gps;
+    public static Location mLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +48,7 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent page = new Intent(MainActivity.this,SelectionAddActivity.class);
+                Intent page = new Intent(MainActivity.this, SelectionAddActivity.class);
                 startActivity(page);
                 //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 //        .setAction("Action", null).show();
@@ -47,7 +63,27 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        
+
+        gps = new GPSTracker(getApplicationContext());
+        mLocation = gps.getLocation();
+        System.out.println(mLocation);
+
+        maps = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+
+        maps.getMapAsync(new OnMapReadyCallback() {
+            @Override
+            public void onMapReady(GoogleMap googleMap) {
+                MainActivity.map = googleMap;
+
+                LatLng dlsu = new LatLng(mLocation.getLatitude(), mLocation.getLongitude());
+                map.addMarker(new MarkerOptions().position(dlsu).title("Marker in Phill"));
+                map.moveCamera(CameraUpdateFactory.newLatLngZoom(dlsu, 18));
+
+                map.animateCamera(CameraUpdateFactory.newLatLngZoom(dlsu
+                        , 18));
+            }
+        });
     }
 
     @Override
