@@ -20,11 +20,19 @@
     </EditText>
 
     <Button
+<<<<<<< HEAD
         android:id="@+id/btn_create_grp_list"
+=======
+        android:id="@+id/btn_create"
+>>>>>>> d288e8c3406040b5bef1da05792e0b196bc4cf33
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:text="Create Task"
         tools:layout_editor_absoluteX="268dp"
         tools:layout_editor_absoluteY="501dp"
         tools:ignore="MissingConstraints" />
+<<<<<<< HEAD
 </android.support.constraint.ConstraintLayout>
+=======
+</android.support.constraint.ConstraintLayout>
+>>>>>>> d288e8c3406040b5bef1da05792e0b196bc4cf33
