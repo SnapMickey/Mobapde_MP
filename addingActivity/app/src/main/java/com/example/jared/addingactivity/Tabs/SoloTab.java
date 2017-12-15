@@ -16,9 +16,8 @@ import com.example.jared.addingactivity.R;
 public class SoloTab extends Fragment {
     private static final String TAG = "SoloFragment";
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,  Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView: Starting");
         View view = inflater.inflate(R.layout.view_solo,container,false);
         return view;

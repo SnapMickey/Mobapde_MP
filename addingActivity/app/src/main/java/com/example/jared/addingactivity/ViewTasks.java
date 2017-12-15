@@ -47,7 +47,7 @@ public class ViewTasks extends AppCompatActivity {
         adapter.addFragment(new SeqTab(), "TAB3");
         Log.d(TAG, (String) adapter.getPageTitle(0));
 
-        viewPager.setAdapter(adapter);
+        mViewPager.setAdapter(adapter);
 
         //https://youtu.be/bNpWGI_hGGg
     }
