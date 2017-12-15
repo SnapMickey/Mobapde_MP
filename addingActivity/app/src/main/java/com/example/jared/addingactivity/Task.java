@@ -7,10 +7,10 @@ package com.example.jared.addingactivity;
 public class Task {
 
     public final static String TABLE_NAME = "taskTable";
-    public final static String COL_TASK_ID = "_id";
-    public final static String COL_LIST_ID = "_id";
+    public final static String COL_TASK_ID = "task_id";
+    public final static String COL_LIST_ID = "list_id";
     public final static String COL_DESC = "description";
-    public final static String COL_DONE = "active";
+    public final static String COL_DONE = "done";
     public final static String COL_SEQ = "sequence";
     public final static String COL_LAT = "latitude";
     public final static String COL_LNG = "longtitude";

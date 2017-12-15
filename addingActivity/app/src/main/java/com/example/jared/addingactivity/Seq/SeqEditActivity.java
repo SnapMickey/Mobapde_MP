@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.jared.addingactivity.DatabaseHelper;
 import com.example.jared.addingactivity.List;
+import com.example.jared.addingactivity.MainActivity;
 import com.example.jared.addingactivity.R;
 import com.example.jared.addingactivity.Solo.SoloAddActivity;
 import com.example.jared.addingactivity.Task;
@@ -30,15 +31,10 @@ public class SeqEditActivity extends AppCompatActivity {
     Button applyButton, addTask;
     RecyclerView rvTasks;
 
-    DatabaseHelper dbHelper;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_task_group);
-
-
-        dbHelper = new DatabaseHelper(getBaseContext());
 
         etListName = findViewById(R.id.et_gtasks);
         applyButton = null; //findViewById(R.id.btn_create_grp_list);
@@ -46,7 +42,7 @@ public class SeqEditActivity extends AppCompatActivity {
         rvTasks = findViewById(R.id.rv_gtasks);
 
         int listId = getIntent().getExtras().getInt("listId");
-        list = dbHelper.queryList(listId);
+        list = MainActivity.db.queryList(listId);
 
         SeqTasksAddAdapter adapter = new SeqTasksAddAdapter(list, this);
 
@@ -59,11 +55,11 @@ public class SeqEditActivity extends AppCompatActivity {
 
                 list.setTitle(etListName.getText().toString());
 
-                long listId = dbHelper.insertList(list);
+                long listId = MainActivity.db.insertList(list);
 
                 for(Task t : list.getTasks()){
                     t.setListId((int)listId);
-                    dbHelper.insertTask(t);
+                    MainActivity.db.insertTask(t);
                 }
 
                 finish();
@@ -93,6 +89,7 @@ public class SeqEditActivity extends AppCompatActivity {
 
                     Task newTask = new Task();
                     newTask.setDone(false);
+                    newTask.setDescription(desc);
                     newTask.setLatitude(lat);
                     newTask.setLongtitude(lng);
                     newTask.setListId(-1);

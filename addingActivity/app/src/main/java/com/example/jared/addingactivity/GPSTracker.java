@@ -43,12 +43,19 @@ public class GPSTracker extends Service implements LocationListener {
 
                 if(isGPSEnabled){
                     if(location==null){
+
+                        if(ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+                                || ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED )
                         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10000,10,this);
+
                         if(locationManager!=null){
+                            System.out.println("this2: " + locationManager);
                             location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
                         }
                     }
-                }
+                }else
+                    System.out.println("no");
+
                 // if lcoation is not found from GPS than it will found from network //
                 if(location==null){
                     if(isNetworkEnabled){
@@ -62,9 +69,8 @@ public class GPSTracker extends Service implements LocationListener {
                 }
 
             }
-
         }catch(Exception ex){
-
+            ex.printStackTrace();
         }
         return  location;
     }

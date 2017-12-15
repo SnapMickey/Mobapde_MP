@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class List {
 
     public final static String TABLE_NAME = "listTable";
-    public final static String COL_LIST_ID = "_id";
+    public final static String COL_LIST_ID = "list_id";
     public final static String COL_TITLE = "title";
     public final static String COL_TYPE = "type";
     public final static String COL_DONE = "done";

@@ -8,6 +8,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
@@ -29,6 +30,8 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -36,6 +39,7 @@ public class MainActivity extends AppCompatActivity
     public static GoogleMap map;
     public static GPSTracker gps;
     public static Location mLocation;
+    public static DatabaseHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +68,8 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        db = new DatabaseHelper(getBaseContext());
+
         gps = new GPSTracker(getApplicationContext());
         mLocation = gps.getLocation();
         System.out.println(mLocation);
@@ -76,14 +82,14 @@ public class MainActivity extends AppCompatActivity
             public void onMapReady(GoogleMap googleMap) {
                 MainActivity.map = googleMap;
 
-                LatLng dlsu = new LatLng(mLocation.getLatitude(), mLocation.getLongitude());
-                map.addMarker(new MarkerOptions().position(dlsu).title("Marker in Phill"));
-                map.moveCamera(CameraUpdateFactory.newLatLngZoom(dlsu, 18));
-
-                map.animateCamera(CameraUpdateFactory.newLatLngZoom(dlsu
-                        , 18));
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        refreshMap();
     }
 
     @Override
@@ -139,4 +145,14 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    public static void refreshMap(){
+        if(map != null) {
+            map.clear();
+            ArrayList<Task> tasks = db.queryAllTasks();
+
+            for (Task t : tasks) {
+                map.addMarker(new MarkerOptions().position(new LatLng(t.getLatitude(), t.getLongtitude())).title(t.getDescription()));
+            }
+        }
+    }
 }

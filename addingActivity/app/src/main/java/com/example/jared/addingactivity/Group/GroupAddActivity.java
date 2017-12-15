@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.jared.addingactivity.DatabaseHelper;
 import com.example.jared.addingactivity.List;
+import com.example.jared.addingactivity.MainActivity;
 import com.example.jared.addingactivity.R;
 import com.example.jared.addingactivity.Solo.SoloAddActivity;
 import com.example.jared.addingactivity.Task;
@@ -33,15 +34,10 @@ public class GroupAddActivity extends AppCompatActivity {
     Button createButton, addTask;
     RecyclerView rvTasks;
 
-    DatabaseHelper dbHelper;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_task_group);
-
-
-        dbHelper = new DatabaseHelper(getBaseContext());
 
         etListName = findViewById(R.id.et_gtasks);
         createButton = findViewById(R.id.btn_create_grp_list);
@@ -78,11 +74,11 @@ public class GroupAddActivity extends AppCompatActivity {
 
                 list.setTitle(etListName.getText().toString());
 
-                long listId = dbHelper.insertList(list);
+                long listId = MainActivity.db.insertList(list);
 
                 for(Task t : list.getTasks()){
                     t.setListId((int)listId);
-                    dbHelper.insertTask(t);
+                    MainActivity.db.insertTask(t);
                 }
 
                 finish();

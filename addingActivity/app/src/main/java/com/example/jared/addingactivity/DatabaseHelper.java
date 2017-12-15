@@ -42,7 +42,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         String sql2 = "CREATE TABLE " + List.TABLE_NAME + " (" +
                 List.COL_LIST_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                Task.COL_DONE + " INTEGER, " +
+                List.COL_DONE + " INTEGER, " +
                 List.COL_TITLE + " TEXT, " +
                 List.COL_TYPE + " TEXT" +
                 ");";
@@ -61,7 +61,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor1 = db.query(Task.TABLE_NAME, null,
                 Task.COL_DESC + " =? ", new String[]{String.valueOf(t.getDescription())}, null, null, null);
 
-        Cursor cursor2 = db.query(Task.COL_LIST_ID, null,
+        Cursor cursor2 = db.query(Task.TABLE_NAME, null,
                 Task.COL_LIST_ID + " =? ", new String[]{String.valueOf(t.getListId())}, null, null, null);
 
         Cursor cursor3 = db.query(Task.TABLE_NAME, null,
