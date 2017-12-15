@@ -24,13 +24,16 @@ public class ViewTasks extends AppCompatActivity {
     private SectionsPageAdapter mSectionsPageAdapter;
 
     private ViewPager mViewPager;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_task);
         Log.d(TAG, "onCreate: Starting");
+
         mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
 
+        //
         mViewPager = (ViewPager) findViewById(R.id.container);
         setupViewPager(mViewPager);
 
@@ -47,7 +50,7 @@ public class ViewTasks extends AppCompatActivity {
         adapter.addFragment(new SeqTab(), "TAB3");
         Log.d(TAG, (String) adapter.getPageTitle(0));
 
-        mViewPager.setAdapter(adapter);
+        viewPager.setAdapter(adapter);
 
         //https://youtu.be/bNpWGI_hGGg
     }
