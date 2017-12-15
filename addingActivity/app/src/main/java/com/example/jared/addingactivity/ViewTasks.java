@@ -45,9 +45,9 @@ public class ViewTasks extends AppCompatActivity {
         FragmentManager cfManager = getSupportFragmentManager();
         SectionsPageAdapter adapter = new SectionsPageAdapter(cfManager);
         Log.d(TAG, "setupViewPager: Starting");
-        adapter.addFragment(new SoloTab(), "TAB1");
-        adapter.addFragment(new GroupTab(), "TAB2");
-        adapter.addFragment(new SeqTab(), "TAB3");
+        adapter.addFragment(new SoloTab(), "Solo");
+        adapter.addFragment(new GroupTab(), "Group");
+        adapter.addFragment(new SeqTab(), "Sequential");
         Log.d(TAG, (String) adapter.getPageTitle(0));
 
         viewPager.setAdapter(adapter);
