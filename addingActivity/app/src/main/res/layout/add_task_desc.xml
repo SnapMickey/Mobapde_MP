@@ -14,13 +14,13 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:clickable="false" >
-<!-- UHHMM ADD MAP HERE???-->
+        <!-- UHHMM ADD MAP HERE???-->
 
         <requestFocus />
     </EditText>
 
     <Button
-        android:id="@+id/btn_create_grp_list"
+        android:id="@+id/btn_create"
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:text="Create Task"
