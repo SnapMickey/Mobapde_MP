@@ -25,13 +25,14 @@ import java.util.ArrayList;
 
 public class SeqAddActivity extends AppCompatActivity {
 
-    public static final int REQUEST_ADD_TASK = 0;
-    public static final int REQUEST_EDIT_TASK = 1;
+    public static final int REQUEST_ADD_TASK = 4;
+    public static final int REQUEST_EDIT_TASK = 5;
 
-    List list;
+    public static List list;
     EditText etListName;
     Button createButton, addTask;
     RecyclerView rvTasks;
+    SeqTasksAddAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,19 +51,7 @@ public class SeqAddActivity extends AppCompatActivity {
         list.setTitle("");
         list.setTasks(new ArrayList<Task>());
 
-        /**TEST*/
-        Task t = new Task();
-        t.setDescription("JARED WINS");
-        t.setDone(false);
-        t.setSeq(-1);
-        t.setLongtitude(0);
-        t.setLatitude(0);
-
-        list.addTasks(t);
-
-        /**END_TEST*/
-
-        SeqTasksAddAdapter adapter = new SeqTasksAddAdapter(list, this);
+         adapter = new SeqTasksAddAdapter(list, this);
 
         rvTasks.setAdapter(adapter);
         rvTasks.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL, false));
@@ -102,16 +91,19 @@ public class SeqAddActivity extends AppCompatActivity {
             switch (requestCode) {
                 case REQUEST_ADD_TASK:
                     String desc = data.getStringExtra("desc");
-                    double lat = Double.parseDouble(data.getStringExtra("lat"));
-                    double lng = Double.parseDouble(data.getStringExtra("lng"));
+                    double lat = data.getDoubleExtra("lat",0);
+                    double lng = data.getDoubleExtra("lng",0);
 
                     Task newTask = new Task();
                     newTask.setDone(false);
-                    newTask.setSeq(-1);
                     newTask.setLatitude(lat);
                     newTask.setLongtitude(lng);
-                    newTask.setListId(-1);
+                    newTask.setDescription(desc);
                     list.addTasks(newTask);
+                    System.out.println(list.getTasks().size());
+                    adapter.notifyItemInserted(list.getTasks().size() - 1);
+                    break;
+                case REQUEST_EDIT_TASK:
                     break;
             }
         }

@@ -30,6 +30,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
@@ -81,15 +82,17 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onMapReady(GoogleMap googleMap) {
                 MainActivity.map = googleMap;
-
+                refreshMap(map);
             }
         });
+
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        refreshMap();
+        refreshMap(map);
     }
 
     @Override
@@ -145,14 +148,27 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    public static void refreshMap(){
-        if(map != null) {
-            map.clear();
+    public static void refreshMap(GoogleMap mMap){
+        if(mMap != null) {
+            mMap.clear();
             ArrayList<Task> tasks = db.queryAllTasks();
+            ArrayList<List> lists = db.queryAllLists();
 
             for (Task t : tasks) {
-                map.addMarker(new MarkerOptions().position(new LatLng(t.getLatitude(), t.getLongtitude())).title(t.getDescription()));
+                if(t.getListId() == -1)
+                    mMap.addMarker(new MarkerOptions().position(new LatLng(t.getLatitude(), t.getLongtitude())).title(t.getDescription()));
             }
+
+            for(List l : lists){
+                System.out.println(l.getListId());
+                if(l.getType().equals("grp")){
+                    ListDrawer.drawGroup(mMap,l.tasks);
+                }
+                else
+                    ListDrawer.drawSequence(mMap,l.tasks);
+
+            }
+
         }
     }
 }

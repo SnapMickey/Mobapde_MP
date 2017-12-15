@@ -39,7 +39,9 @@ public class SeqTasksAddAdapter extends RecyclerView.Adapter<SeqTasksAddAdapter.
     public void onBindViewHolder(SeqAddTaskViewHolder holder, int position) {
         final int index = position;
         final Task task = list.getTasks().get(index);
+        task.setSeq(position);
         holder.tvTaskDescription.setText(task.getDescription());
+        holder.tvSeq.setText("" + position);
 
         holder.btnRemove.setOnClickListener(new View.OnClickListener() {
             @Override

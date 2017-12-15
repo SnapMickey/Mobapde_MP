@@ -25,8 +25,8 @@ import java.util.ArrayList;
 
 public class GroupEditActivity extends AppCompatActivity {
 
-    public static final int REQUEST_ADD_TASK = 0;
-    public static final int REQUEST_EDIT_TASK = 1;
+    public static final int REQUEST_ADD_TASK = 2;
+    public static final int REQUEST_EDIT_TASK = 3;
 
     List list;
     EditText etListName;

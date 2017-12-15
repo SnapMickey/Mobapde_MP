@@ -23,8 +23,8 @@ import com.example.jared.addingactivity.Task;
 
 public class SeqEditActivity extends AppCompatActivity {
 
-    public static final int REQUEST_ADD_TASK = 0;
-    public static final int REQUEST_EDIT_TASK = 1;
+    public static final int REQUEST_ADD_TASK = 5;
+    public static final int REQUEST_EDIT_TASK = 6;
 
     List list;
     EditText etListName;

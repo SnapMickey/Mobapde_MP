@@ -1,5 +1,7 @@
 package com.example.jared.addingactivity.Solo;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.jared.addingactivity.DatabaseHelper;
 import com.example.jared.addingactivity.Group.GroupAddActivity;
+import com.example.jared.addingactivity.ListDrawer;
 import com.example.jared.addingactivity.MainActivity;
 import com.example.jared.addingactivity.R;
 import com.example.jared.addingactivity.Seq.SeqAddActivity;
@@ -41,9 +44,16 @@ public class SoloAddActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_task_desc);
+        final int requestCode;
+        int requestCode1;
+        try {
+            requestCode1 = getIntent().getExtras().getInt("requestCode");
+        }catch(Exception e){
+            e.printStackTrace();
+            requestCode1 = -1;
+        }
 
-        final String requestCode = getIntent().getStringExtra("requestCode");
-
+        requestCode = requestCode1;
 
         etDesc = findViewById(R.id.taskDesc);
         btnCreateTask = findViewById(R.id.btn_create);
@@ -57,16 +67,18 @@ public class SoloAddActivity extends AppCompatActivity {
                 map = googleMap;
 
                 if(map != null) {
-                    map.clear();
-                    ArrayList<Task> tasks = MainActivity.db.queryAllTasks();
-
-                    for (Task t : tasks) {
-                        map.addMarker(new MarkerOptions().position(new LatLng(t.getLatitude(), t.getLongtitude())).title(t.getDescription()));
-                    }
+                    MainActivity.refreshMap(map);
                 }
 
-                if(requestCode != null){
-                    getIntent().getStringExtra("requestCode");
+                if(requestCode != -1){
+                    switch(requestCode){
+                        case GroupAddActivity.REQUEST_ADD_TASK:
+                            ListDrawer.drawGroup(map, GroupAddActivity.list.getTasks());
+                            break;
+                        case SeqAddActivity.REQUEST_ADD_TASK:
+                            ListDrawer.drawSequence(map,SeqAddActivity.list.getTasks());
+                            break;
+                    }
                 }
 
                 map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
@@ -92,7 +104,10 @@ public class SoloAddActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
             if(latLng != null && !etDesc.getText().toString().matches("")) {
-                if (requestCode == null) {
+
+                Intent resultData = new Intent();
+
+                if (requestCode == -1) {
 
                     Task newTask = new Task();
                     newTask.setListId(-1);
@@ -105,10 +120,20 @@ public class SoloAddActivity extends AppCompatActivity {
                     MainActivity.db.insertTask(newTask);
                     finish();
 
-                } else if (Integer.parseInt(requestCode) == GroupAddActivity.REQUEST_ADD_TASK) {
-
-                } else if (Integer.parseInt(requestCode) == SeqAddActivity.REQUEST_ADD_TASK) {
-
+                } else if (requestCode == GroupAddActivity.REQUEST_ADD_TASK) {
+                    System.out.println(SoloAddActivity.this.latLng.latitude);
+                    resultData.putExtra("desc", etDesc.getText().toString());
+                    resultData.putExtra("lat", SoloAddActivity.this.latLng.latitude);
+                    resultData.putExtra("lng", SoloAddActivity.this.latLng.longitude);
+                    setResult(Activity.RESULT_OK, resultData);
+                    finish();
+                } else if (requestCode == SeqAddActivity.REQUEST_ADD_TASK) {
+                    System.out.println(SoloAddActivity.this.latLng.latitude);
+                    resultData.putExtra("desc", etDesc.getText().toString());
+                    resultData.putExtra("lat", SoloAddActivity.this.latLng.latitude);
+                    resultData.putExtra("lng", SoloAddActivity.this.latLng.longitude);
+                    setResult(Activity.RESULT_OK, resultData);
+                    finish();
                 }
             }
             else if(latLng == null) {

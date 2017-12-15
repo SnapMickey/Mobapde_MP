@@ -114,9 +114,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             listId = db.insert(List.TABLE_NAME, null, cv);
         }
 
-        Cursor cursor3 = db.query(List.TABLE_NAME, null,
-                List.COL_TYPE + " =? " + List.COL_TITLE + "=? ", new String[]{String.valueOf(l.getType()),String.valueOf(l.getTitle())}, null, null, null);
-
         db.close();
         return listId;
     }
@@ -299,19 +296,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
                 ArrayList<Task> tasks = new ArrayList<>();
 
-                if(cursor.moveToFirst()){
+                if(cursor1.moveToFirst()){
                     do{
                         Task task = new Task();
-                        task.setTaskId(cursor.getInt(cursor.getColumnIndex(Task.COL_TASK_ID)));
-                        task.setListId(cursor.getInt(cursor.getColumnIndex(Task.COL_LIST_ID)));
-                        task.setDone(1 == cursor.getInt(cursor.getColumnIndex(Task.COL_DONE)));
-                        task.setSeq(cursor.getInt(cursor.getColumnIndex(Task.COL_SEQ)));
-                        task.setDescription(cursor.getString(cursor.getColumnIndex(Task.COL_DESC)));
-                        task.setLatitude(cursor.getDouble(cursor.getColumnIndex(Task.COL_LAT)));
-                        task.setLongtitude(cursor.getDouble(cursor.getColumnIndex(Task.COL_LNG)));
+                        task.setTaskId(cursor1.getInt(cursor1.getColumnIndex(Task.COL_TASK_ID)));
+                        task.setListId(cursor1.getInt(cursor1.getColumnIndex(Task.COL_LIST_ID)));
+                        task.setDone(1 == cursor1.getInt(cursor1.getColumnIndex(Task.COL_DONE)));
+                        task.setSeq(cursor1.getInt(cursor1.getColumnIndex(Task.COL_SEQ)));
+                        task.setDescription(cursor1.getString(cursor1.getColumnIndex(Task.COL_DESC)));
+                        task.setLatitude(cursor1.getDouble(cursor1.getColumnIndex(Task.COL_LAT)));
+                        task.setLongtitude(cursor1.getDouble(cursor1.getColumnIndex(Task.COL_LNG)));
                         tasks.add(task);
 
-                    }while(cursor.moveToNext());
+                    }while(cursor1.moveToNext());
                 }
 
                 list.setTasks(tasks);
