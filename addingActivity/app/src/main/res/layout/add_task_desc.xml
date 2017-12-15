@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
     <TextView
         android:layout_width="match_parent"
@@ -13,6 +15,16 @@
         android:layout_gravity="center_horizontal"
         android:clickable="false" >
 <!-- UHHMM ADD MAP HERE???-->
+
         <requestFocus />
     </EditText>
+
+    <Button
+        android:id="@+id/btn_create_grp_list"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:text="Create Task"
+        tools:layout_editor_absoluteX="268dp"
+        tools:layout_editor_absoluteY="501dp"
+        tools:ignore="MissingConstraints" />
 </android.support.constraint.ConstraintLayout>

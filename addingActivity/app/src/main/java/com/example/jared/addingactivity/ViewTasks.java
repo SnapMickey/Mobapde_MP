@@ -3,6 +3,7 @@ package com.example.jared.addingactivity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -38,7 +39,8 @@ public class ViewTasks extends AppCompatActivity {
     }
 
     private void setupViewPager(ViewPager viewPager){
-        SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
+        FragmentManager cfManager = getSupportFragmentManager();
+        SectionsPageAdapter adapter = new SectionsPageAdapter(cfManager);
         Log.d(TAG, "setupViewPager: Starting");
         adapter.addFragment(new SoloTab(), "TAB1");
         adapter.addFragment(new GroupTab(), "TAB2");
