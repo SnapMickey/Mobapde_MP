@@ -26,8 +26,8 @@ public class SoloAddActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_task_desc);
 
-        tvDesc = null;
-        btnCreateTask = null;
+        tvDesc = findViewById(R.id.taskDesc);
+        btnCreateTask = findViewById(R.id.btn_create);
 
         btnCreateTask.setOnClickListener(new View.OnClickListener() {
             @Override

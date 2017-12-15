@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.jared.addingactivity.Group.GroupAddActivity;
+import com.example.jared.addingactivity.Seq.SeqAddActivity;
 import com.example.jared.addingactivity.Solo.SoloAddActivity;
 
 /**
@@ -46,7 +47,8 @@ public class SelectionAddActivity extends AppCompatActivity{
         seqbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent page = new Intent(SelectionAddActivity.this,SeqAddActivity.class);
+                startActivity(page);
             }
         });
 

@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.jared.addingactivity.DatabaseHelper;
@@ -28,7 +29,7 @@ public class GroupAddActivity extends AppCompatActivity {
     public static final int REQUEST_EDIT_TASK = 1;
 
     List list;
-    TextView tvListName;
+    EditText etListName;
     Button createButton, addTask;
     RecyclerView rvTasks;
 
@@ -42,7 +43,7 @@ public class GroupAddActivity extends AppCompatActivity {
 
         dbHelper = new DatabaseHelper(getBaseContext());
 
-        tvListName = findViewById(R.id.tv_gtasks);
+        etListName = findViewById(R.id.et_gtasks);
         createButton = findViewById(R.id.btn_create_grp_list);
         addTask = findViewById(R.id.btn_add_task);
         rvTasks = findViewById(R.id.rv_gtasks);
@@ -75,7 +76,7 @@ public class GroupAddActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                list.setTitle((String) tvListName.getText());
+                list.setTitle(etListName.getText().toString());
 
                 long listId = dbHelper.insertList(list);
 

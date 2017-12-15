@@ -39,7 +39,7 @@ public class GroupTasksAddAdapter extends RecyclerView.Adapter<GroupTasksAddAdap
     public void onBindViewHolder(GroupAddTaskViewHolder holder, int position) {
         final int index = position;
         final Task task = list.getTasks().get(index);
-        holder.etTaskDescription.setText(task.getDescription());
+        holder.tvTaskDescription.setText(task.getDescription());
 
         holder.btnRemove.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,12 +68,12 @@ public class GroupTasksAddAdapter extends RecyclerView.Adapter<GroupTasksAddAdap
     /** VIEW HOLDER */
     public class GroupAddTaskViewHolder extends RecyclerView.ViewHolder{
         Button btnRemove, btnEdit;
-        EditText etTaskDescription;
+        TextView tvTaskDescription;
         View container;
 
         public GroupAddTaskViewHolder(View itemView) {
             super(itemView);
-            etTaskDescription = null;
+            tvTaskDescription = itemView.findViewById(R.id.taskDesc);
             btnRemove = itemView.findViewById(R.id.btn_deletetask);
             btnEdit = itemView.findViewById(R.id.btn_edittask);
             container = itemView;
