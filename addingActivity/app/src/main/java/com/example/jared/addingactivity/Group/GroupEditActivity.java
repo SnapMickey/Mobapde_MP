@@ -43,7 +43,7 @@ public class GroupEditActivity extends AppCompatActivity {
         dbHelper = new DatabaseHelper(getBaseContext());
 
         etListName = findViewById(R.id.et_gtasks);
-        applyButton = null; //findViewById(R.id.btn_create_grp_list);
+        applyButton = findViewById(R.id.btn_create_grp_list);
         addTask = findViewById(R.id.btn_add_task);
         rvTasks = findViewById(R.id.rv_gtasks);
 

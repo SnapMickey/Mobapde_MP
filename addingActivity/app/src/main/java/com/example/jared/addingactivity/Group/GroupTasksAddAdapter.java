@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.jared.addingactivity.List;
 import com.example.jared.addingactivity.R;
+import com.example.jared.addingactivity.Solo.SoloEditActivity;
 import com.example.jared.addingactivity.Task;
 import com.example.jared.addingactivity.TemporaryMarkerRepo;
 
@@ -52,7 +53,7 @@ public class GroupTasksAddAdapter extends RecyclerView.Adapter<GroupTasksAddAdap
         holder.btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent page = new Intent(activity,GroupEditActivity.class);
+                Intent page = new Intent(activity,SoloEditActivity.class);
                 page.putExtra("requestCode",GroupAddActivity.REQUEST_EDIT_TASK);
                 page.putExtra("position", index);
                 activity.startActivityForResult(page, GroupAddActivity.REQUEST_EDIT_TASK);

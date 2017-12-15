@@ -14,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/rv_gtasks"
-            android:layout_below="@+id/tv_gtasks">
+            android:layout_below="@+id/et_gtasks">
         </android.support.v7.widget.RecyclerView>
 
         <Button
