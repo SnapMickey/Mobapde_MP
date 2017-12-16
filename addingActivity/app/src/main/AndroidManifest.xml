@@ -26,7 +26,8 @@
         <activity android:name=".Solo.SoloEditActivity"></activity>
         <activity android:name=".Seq.SeqAddActivity"></activity>
         <activity android:name=".Seq.SeqEditActivity"></activity>
-        <activity android:name=".SelectionAddActivity"></activity>
+        <activity android:name=".SelectionAddActivity"
+            android:parentActivityName=".MainActivity"></activity>
         <activity android:name=".ViewTasks"></activity>
 
         <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyC2BXZxNBYIl1I7-9cnJXkdAKQmOeTEuPY"/>

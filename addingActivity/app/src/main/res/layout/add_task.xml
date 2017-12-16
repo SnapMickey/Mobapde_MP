@@ -1,28 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <Button
-        android:layout_height="50dp"
-        android:layout_width="match_parent"
-        android:text="SOLO TASK"
-        android:id="@+id/solotaskBtn" />
+    android:layout_height="match_parent"
+    android:background="#FF593C"
+    >
 
-    <Button
-        android:layout_height="50dp"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:text="GROUP TASK"
-        android:id="@+id/grouptaskBtn"
-        android:layout_below="@+id/solotaskBtn"/>
+        android:layout_height="match_parent">
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            android:background="@color/colorPrimaryDark"
+            android:id="@+id/appbar"
+            >
 
-    <Button
-        android:layout_height="50dp"
-        android:layout_width="match_parent"
-        android:text="SEQUENCE TASK"
-        android:id="@+id/sequencetaskBtn"
-        android:layout_below="@+id/grouptaskBtn"/>
-</RelativeLayout>
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="#BA4130"
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+        </android.support.design.widget.AppBarLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Tasks"
+            android:id="@+id/screenLabel"
+            android:textSize="30dp"
+            android:textColor="#ffffff"
+            android:layout_below="@+id/appbar"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            />
+        <Button
+            android:id="@+id/solotaskBtn"
+            style="@style/Base.Widget.AppCompat.Button.Colored"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/screenLabel"
+            android:background="#BA4134"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:text="SOLO TASK"/>
+
+        <Button
+            android:id="@+id/grouptaskBtn"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/solotaskBtn"
+            android:background="#BA4134"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:text="GROUP TASK" />
+
+        <Button
+            android:id="@+id/sequencetaskBtn"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/grouptaskBtn"
+            android:background="#BA4134"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:text="SEQUENCE TASK" />
+    </RelativeLayout>
 </android.support.constraint.ConstraintLayout>
