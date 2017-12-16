@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -17,6 +18,7 @@ import com.example.jared.addingactivity.DatabaseHelper;
 import com.example.jared.addingactivity.List;
 import com.example.jared.addingactivity.MainActivity;
 import com.example.jared.addingactivity.R;
+import com.example.jared.addingactivity.SimpleItemTouchHelperCallback;
 import com.example.jared.addingactivity.Solo.SoloAddActivity;
 import com.example.jared.addingactivity.Task;
 import com.example.jared.addingactivity.TemporaryMarkerRepo;
@@ -68,6 +70,10 @@ public class GroupAddActivity extends AppCompatActivity {
         rvTasks.setAdapter(adapter);
         rvTasks.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL, false));
 
+        ItemTouchHelper.Callback callback =
+                new SimpleItemTouchHelperCallback(adapter);
+        ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
+        touchHelper.attachToRecyclerView(rvTasks);
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
