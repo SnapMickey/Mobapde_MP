@@ -15,8 +15,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/seqTitle"
-            android:textSize="25sp"
-            android:layout_margin="10dp"
+            android:textSize="20sp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="10dp"
             android:layout_weight="5"/>
     </LinearLayout>
 
