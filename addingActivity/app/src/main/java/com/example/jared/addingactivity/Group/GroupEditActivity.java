@@ -47,6 +47,7 @@ public class GroupEditActivity extends AppCompatActivity {
         int listId = getIntent().getExtras().getInt("listId");
         list = MainActivity.db.queryList(listId);
 
+
         etListName.setText(list.getTitle());
         applyButton.setText("Apply Changes");
 

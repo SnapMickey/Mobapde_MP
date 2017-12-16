@@ -18,6 +18,7 @@ import com.example.jared.addingactivity.MainActivity;
 import com.example.jared.addingactivity.R;
 import com.example.jared.addingactivity.Seq.SeqAddActivity;
 import com.example.jared.addingactivity.Seq.SeqEditActivity;
+import com.example.jared.addingactivity.Tabs.SoloTab;
 import com.example.jared.addingactivity.Task;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -78,6 +79,14 @@ public class SoloEditActivity extends AppCompatActivity {
                 int position;
                 if (requestCode != -1) {
                     switch (requestCode) {
+                        case SoloTab.REQUEST_EDIT:
+                            position = getIntent().getExtras().getInt("position");
+                            GroupAddActivity.list.getTasks().remove(position);
+                            ListDrawer.drawGroup(map, GroupAddActivity.list.getTasks());
+                            etDesc.setText(desc);
+                            latLng = new LatLng(lat,lng);
+                            marker = map.addMarker(new MarkerOptions().position(latLng));
+                            break;
                         case GroupAddActivity.REQUEST_EDIT_TASK:
                             position = getIntent().getExtras().getInt("position");
                             GroupAddActivity.list.getTasks().remove(position);

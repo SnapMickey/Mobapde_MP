@@ -45,6 +45,7 @@ public class SelectionAddActivity extends AppCompatActivity{
             public void onClick(View view) {
                 Intent page = new Intent(SelectionAddActivity.this,SoloAddActivity.class);
                 startActivity(page);
+                finish();
             }
         });
 
@@ -53,6 +54,7 @@ public class SelectionAddActivity extends AppCompatActivity{
             public void onClick(View view) {
                 Intent page = new Intent(SelectionAddActivity.this,GroupAddActivity.class);
                 startActivity(page);
+                finish();
             }
         });
 
@@ -61,6 +63,7 @@ public class SelectionAddActivity extends AppCompatActivity{
             public void onClick(View view) {
                 Intent page = new Intent(SelectionAddActivity.this,SeqAddActivity.class);
                 startActivity(page);
+                finish();
             }
         });
 
