@@ -47,6 +47,9 @@ public class GroupEditActivity extends AppCompatActivity {
         int listId = getIntent().getExtras().getInt("listId");
         list = MainActivity.db.queryList(listId);
 
+        etListName.setText(list.getTitle());
+        applyButton.setText("Apply Changes");
+
         adapter = new GroupTasksAddAdapter(list, this);
 
         rvTasks.setAdapter(adapter);
@@ -55,16 +58,23 @@ public class GroupEditActivity extends AppCompatActivity {
         applyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                int listId = getIntent().getExtras().getInt("listId");
+                List newlist = MainActivity.db.queryList(listId);
 
-                list.setTitle(etListName.getText().toString());
+                for(Task t : newlist.getTasks()){
+                    if(list.getTasks().contains(t)){
+                        MainActivity.db.deleteTask(t.getTaskId());
+                    }
+                    else{
+                        Task newTask = list.getTask(t.getTaskId());
+                        if(t.isDone())
+                            newTask.setDone(true);
 
-                long listId = MainActivity.db.insertList(list);
-
-                for(Task t : list.getTasks()){
-                    t.setListId((int)listId);
-                    MainActivity.db.insertTask(t);
+                        MainActivity.db.updateTask(newTask, t.getTaskId());
+                    }
                 }
 
+                MainActivity.db.updateList(list,listId);
                 finish();
             }
         });
@@ -111,10 +121,13 @@ public class GroupEditActivity extends AppCompatActivity {
 
                     position = data.getIntExtra("position",0);
 
-                    Task task = list.getTasks().get(position);
-                    task.setDescription(desc);
+                    Task task = new Task();
+                    task.setDone(false);
+                    task.setSeq(-1);
                     task.setLatitude(lat);
                     task.setLongtitude(lng);
+                    task.setDescription(desc);
+                    list.getTasks().add(position,task);
                     adapter.notifyItemChanged(position);
                     break;
             }

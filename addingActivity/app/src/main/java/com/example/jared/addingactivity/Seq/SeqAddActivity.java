@@ -122,7 +122,6 @@ public class SeqAddActivity extends AppCompatActivity {
                     task.setLongtitude(lng);
                     task.setDescription(desc);
                     list.getTasks().add(position,task);
-
                     adapter.notifyItemChanged(position);
                     break;
             }
