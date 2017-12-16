@@ -21,6 +21,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/taskDesc"
             android:textSize="20sp"
+            android:layout_marginLeft="10dp"
             android:layout_weight="4.5"/>
     </LinearLayout>
 
