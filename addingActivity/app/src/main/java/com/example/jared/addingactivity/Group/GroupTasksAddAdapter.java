@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.jared.addingactivity.List;
 import com.example.jared.addingactivity.R;
+import com.example.jared.addingactivity.SimpleItemTouchHelperCallback;
 import com.example.jared.addingactivity.Solo.SoloEditActivity;
 import com.example.jared.addingactivity.Task;
 import com.example.jared.addingactivity.TemporaryMarkerRepo;
@@ -20,7 +21,7 @@ import com.example.jared.addingactivity.TemporaryMarkerRepo;
  * Created by Jared on 12/12/2017.
  */
 
-public class GroupTasksAddAdapter extends RecyclerView.Adapter<GroupTasksAddAdapter.GroupAddTaskViewHolder> {
+public class GroupTasksAddAdapter extends RecyclerView.Adapter<GroupTasksAddAdapter.GroupAddTaskViewHolder> implements SimpleItemTouchHelperCallback.ItemTouchHelperAdapter{
 
     private List list;
     private Activity activity;
@@ -59,6 +60,17 @@ public class GroupTasksAddAdapter extends RecyclerView.Adapter<GroupTasksAddAdap
     @Override
     public int getItemCount() {
         return list.getTasks().size();
+    }
+
+    @Override
+    public void onItemMove(int fromPosition, int toPosition) {
+
+    }
+
+    @Override
+    public void onItemDismiss(int position) {
+        list.removeTasks(position);
+        notifyItemRemoved(position);
     }
 
     /** VIEW HOLDER */
