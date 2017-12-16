@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,6 +15,7 @@ import com.example.jared.addingactivity.DatabaseHelper;
 import com.example.jared.addingactivity.List;
 import com.example.jared.addingactivity.MainActivity;
 import com.example.jared.addingactivity.R;
+import com.example.jared.addingactivity.SimpleItemTouchHelperCallback;
 import com.example.jared.addingactivity.Solo.SoloAddActivity;
 import com.example.jared.addingactivity.Task;
 
@@ -55,6 +57,11 @@ public class SeqAddActivity extends AppCompatActivity {
 
         rvTasks.setAdapter(adapter);
         rvTasks.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL, false));
+
+        ItemTouchHelper.Callback callback =
+                new SimpleItemTouchHelperCallback(adapter);
+        ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
+        touchHelper.attachToRecyclerView(rvTasks);
 
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override

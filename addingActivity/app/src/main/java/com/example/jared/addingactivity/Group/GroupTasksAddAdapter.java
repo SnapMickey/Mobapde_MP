@@ -42,14 +42,6 @@ public class GroupTasksAddAdapter extends RecyclerView.Adapter<GroupTasksAddAdap
         final Task task = list.getTasks().get(index);
         holder.tvTaskDescription.setText(task.getDescription());
 
-        holder.btnRemove.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                list.getTasks().remove(index);
-                GroupTasksAddAdapter.this.notifyItemRemoved(index);
-            }
-        });
-
         holder.btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,14 +63,13 @@ public class GroupTasksAddAdapter extends RecyclerView.Adapter<GroupTasksAddAdap
 
     /** VIEW HOLDER */
     public class GroupAddTaskViewHolder extends RecyclerView.ViewHolder{
-        Button btnRemove, btnEdit;
+        Button btnEdit;
         TextView tvTaskDescription;
         View container;
 
         public GroupAddTaskViewHolder(View itemView) {
             super(itemView);
             tvTaskDescription = itemView.findViewById(R.id.taskDesc);
-            btnRemove = itemView.findViewById(R.id.btn_deletetask);
             btnEdit = itemView.findViewById(R.id.btn_edittask);
             container = itemView;
         }

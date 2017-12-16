@@ -82,7 +82,7 @@ public class ListDrawer {
     }
 
     public static void drawSequence(GoogleMap map, ArrayList<Task> tasks){
-        if(tasks.isEmpty() || tasks.size() == 1)
+        if(tasks.isEmpty())
             return;
 
         map.addMarker(new MarkerOptions().position(new LatLng(tasks.get(0).getLatitude(), tasks.get(0).getLongtitude())).title(tasks.get(0).getDescription()));
