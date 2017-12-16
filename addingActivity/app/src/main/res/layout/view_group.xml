@@ -10,6 +10,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Group Tasks"
+            android:textSize="25sp"
+            android:layout_margin="10dp"
             android:id="@+id/tv_label"/>
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
