@@ -30,6 +30,8 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:id="@+id/editBtn"
+        android:textColor="#ffffff"
+        android:background="#FF593C"
         />
 </RelativeLayout>
 </android.support.constraint.ConstraintLayout>
