@@ -8,7 +8,7 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="PerimiTask"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -20,11 +20,11 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".Group.GroupAddActivity"></activity>
+        <activity android:name=".Group.GroupAddActivity" android:parentActivityName=".SelectionAddActivity"></activity>
         <activity android:name=".Group.GroupEditActivity"></activity>
-        <activity android:name=".Solo.SoloAddActivity"></activity>
+        <activity android:name=".Solo.SoloAddActivity" android:parentActivityName=".SelectionAddActivity"></activity>
         <activity android:name=".Solo.SoloEditActivity"></activity>
-        <activity android:name=".Seq.SeqAddActivity"></activity>
+        <activity android:name=".Seq.SeqAddActivity" android:parentActivityName=".SelectionAddActivity"></activity>
         <activity android:name=".Seq.SeqEditActivity"></activity>
         <activity android:name=".SelectionAddActivity"
             android:parentActivityName=".MainActivity"></activity>

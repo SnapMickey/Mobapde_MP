@@ -34,7 +34,7 @@ public class SelectionAddActivity extends AppCompatActivity{
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Window window = this.getWindow();
-        window.setStatusBarColor(Color.argb(0,186,65,48));
+        window.setStatusBarColor(Color.argb(100,186,65,48));
 
         solobtn = (Button) findViewById(R.id.solotaskBtn);
         groupbtn = (Button) findViewById(R.id.grouptaskBtn);
