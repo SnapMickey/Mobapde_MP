@@ -1,12 +1,15 @@
 package com.example.jared.addingactivity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Window;
 
 import com.example.jared.addingactivity.Tabs.GroupTab;
 import com.example.jared.addingactivity.Tabs.SectionsPageAdapter;
@@ -30,6 +33,13 @@ public class ViewTasks extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_task);
         Log.d(TAG, "onCreate: Starting");
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Window window = this.getWindow();
+        window.setStatusBarColor(Color.argb(100,111, 175, 140));
 
         mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
 
