@@ -22,6 +22,8 @@
 
         <activity android:name=".Group.GroupAddActivity" android:parentActivityName=".SelectionAddActivity"></activity>
         <activity android:name=".Group.GroupEditActivity"></activity>
+        <activity android:name=".Group.GroupViewActivity"></activity>
+        <activity android:name=".Seq.SeqViewActivity"></activity>
         <activity android:name=".Solo.SoloAddActivity" android:parentActivityName=".SelectionAddActivity"></activity>
         <activity android:name=".Solo.SoloEditActivity"></activity>
         <activity android:name=".Seq.SeqAddActivity" android:parentActivityName=".SelectionAddActivity"></activity>

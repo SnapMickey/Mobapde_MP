@@ -38,11 +38,13 @@ public class GroupViewActivity extends AppCompatActivity {
         rvTasks = findViewById(R.id.rv_tasks);
         btnEdit = findViewById(R.id.editBtn);
 
+
         btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent page = new Intent(GroupViewActivity.this,GroupEditActivity.class);
                 page.putExtra("requestCode", GroupViewActivity.REQUEST_EDIT_TASK);
+                page.putExtra("listId", list.getListId());
                 startActivity(page);
             }
         });
@@ -50,6 +52,7 @@ public class GroupViewActivity extends AppCompatActivity {
         int listId = getIntent().getExtras().getInt("listId");
         list = MainActivity.db.queryList(listId);
 
+        tvTitle.setText(list.getTitle());
         adapter = new GroupViewAdapter(list,this);
 
         rvTasks.setAdapter(adapter);

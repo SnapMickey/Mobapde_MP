@@ -38,7 +38,7 @@ public class SeqEditActivity extends AppCompatActivity {
         setContentView(R.layout.add_task_group);
 
         etListName = findViewById(R.id.et_gtasks);
-        applyButton = null; //findViewById(R.id.btn_create_grp_list);
+        applyButton = findViewById(R.id.btn_create_grp_list);
         addTask = findViewById(R.id.btn_add_task);
         rvTasks = findViewById(R.id.rv_gtasks);
 
@@ -49,6 +49,8 @@ public class SeqEditActivity extends AppCompatActivity {
 
         rvTasks.setAdapter(adapter);
         rvTasks.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL, false));
+
+        applyButton.setText("Apply Changes");
 
         applyButton.setOnClickListener(new View.OnClickListener() {
             @Override

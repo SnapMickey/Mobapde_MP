@@ -21,6 +21,9 @@ import com.example.jared.addingactivity.MainActivity;
 import com.example.jared.addingactivity.R;
 import com.example.jared.addingactivity.Seq.SeqAddActivity;
 import com.example.jared.addingactivity.Seq.SeqEditActivity;
+import com.example.jared.addingactivity.Tabs.GroupTab;
+import com.example.jared.addingactivity.Tabs.SeqTab;
+import com.example.jared.addingactivity.Tabs.SoloTab;
 import com.example.jared.addingactivity.Task;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -93,10 +96,10 @@ public class SoloAddActivity extends AppCompatActivity {
                             ListDrawer.drawSequence(map,SeqAddActivity.list.getTasks());
                             break;
                         case GroupEditActivity.REQUEST_ADD_TASK:
-                            ListDrawer.drawGroup(map, GroupAddActivity.list.getTasks());
+                            ListDrawer.drawGroup(map, GroupEditActivity.list.getTasks());
                             break;
                         case SeqEditActivity.REQUEST_ADD_TASK:
-                            ListDrawer.drawSequence(map,SeqAddActivity.list.getTasks());
+                            ListDrawer.drawSequence(map,SeqEditActivity.list.getTasks());
                             break;
                     }
                 }

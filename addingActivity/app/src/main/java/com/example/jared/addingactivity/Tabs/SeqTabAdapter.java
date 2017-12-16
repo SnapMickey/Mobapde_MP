@@ -12,6 +12,7 @@ import com.example.jared.addingactivity.Group.GroupAddActivity;
 import com.example.jared.addingactivity.List;
 import com.example.jared.addingactivity.R;
 import com.example.jared.addingactivity.Seq.SeqEditActivity;
+import com.example.jared.addingactivity.Seq.SeqViewActivity;
 import com.example.jared.addingactivity.Solo.SoloEditActivity;
 import com.example.jared.addingactivity.Task;
 
@@ -46,7 +47,7 @@ public class SeqTabAdapter extends RecyclerView.Adapter<SeqTabAdapter.SeqViewHol
         holder.container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent page = new Intent(activity,SeqEditActivity.class);
+                Intent page = new Intent(activity,SeqViewActivity.class);
                 page.putExtra("listId", list.getListId());
                 activity.startActivity(page);
             }

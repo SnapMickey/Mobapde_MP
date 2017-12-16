@@ -42,6 +42,7 @@ public class SeqViewActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent page = new Intent(SeqViewActivity.this,SeqEditActivity.class);
                 page.putExtra("requestCode",SeqViewActivity.REQUEST_EDIT_TASK);
+                page.putExtra("listId", list.getListId());
                 startActivity(page);
             }
         });
@@ -49,6 +50,7 @@ public class SeqViewActivity extends AppCompatActivity {
         int listId = getIntent().getExtras().getInt("listId");
         list = MainActivity.db.queryList(listId);
 
+        tvTitle.setText(list.getTitle());
         adapter = new SeqViewAdapter(list,this);
 
         rvTasks.setAdapter(adapter);

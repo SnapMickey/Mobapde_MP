@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.jared.addingactivity.Group.GroupAddActivity;
 import com.example.jared.addingactivity.Group.GroupEditActivity;
+import com.example.jared.addingactivity.Group.GroupViewActivity;
 import com.example.jared.addingactivity.List;
 import com.example.jared.addingactivity.R;
 import com.example.jared.addingactivity.Solo.SoloEditActivity;
@@ -47,7 +48,7 @@ public class GroupTabAdapter extends RecyclerView.Adapter<GroupTabAdapter.GroupV
         holder.container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent page = new Intent(activity,GroupEditActivity.class);
+                Intent page = new Intent(activity,GroupViewActivity.class);
                 page.putExtra("listId", list.getListId());
                 activity.startActivity(page);
             }
