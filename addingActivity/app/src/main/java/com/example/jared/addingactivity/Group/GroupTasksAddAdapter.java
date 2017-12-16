@@ -56,6 +56,9 @@ public class GroupTasksAddAdapter extends RecyclerView.Adapter<GroupTasksAddAdap
                 Intent page = new Intent(activity,SoloEditActivity.class);
                 page.putExtra("requestCode",GroupAddActivity.REQUEST_EDIT_TASK);
                 page.putExtra("position", index);
+                page.putExtra("desc", task.getDescription());
+                page.putExtra("lat", task.getLatitude());
+                page.putExtra("lng", task.getLongtitude());
                 activity.startActivityForResult(page, GroupAddActivity.REQUEST_EDIT_TASK);
             }
         });

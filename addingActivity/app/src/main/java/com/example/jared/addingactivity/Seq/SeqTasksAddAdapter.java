@@ -57,6 +57,9 @@ public class SeqTasksAddAdapter extends RecyclerView.Adapter<SeqTasksAddAdapter.
                 Intent page = new Intent(activity,SoloEditActivity.class);
                 page.putExtra("requestCode", SeqAddActivity.REQUEST_EDIT_TASK);
                 page.putExtra("position", index);
+                page.putExtra("desc", task.getDescription());
+                page.putExtra("lat", task.getLatitude());
+                page.putExtra("lng", task.getLongtitude());
                 activity.startActivityForResult(page, SeqAddActivity.REQUEST_EDIT_TASK);
             }
         });

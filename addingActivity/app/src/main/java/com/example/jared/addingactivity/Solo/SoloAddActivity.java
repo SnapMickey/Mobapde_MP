@@ -12,10 +12,12 @@ import android.widget.TextView;
 
 import com.example.jared.addingactivity.DatabaseHelper;
 import com.example.jared.addingactivity.Group.GroupAddActivity;
+import com.example.jared.addingactivity.Group.GroupEditActivity;
 import com.example.jared.addingactivity.ListDrawer;
 import com.example.jared.addingactivity.MainActivity;
 import com.example.jared.addingactivity.R;
 import com.example.jared.addingactivity.Seq.SeqAddActivity;
+import com.example.jared.addingactivity.Seq.SeqEditActivity;
 import com.example.jared.addingactivity.Task;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -78,6 +80,12 @@ public class SoloAddActivity extends AppCompatActivity {
                         case SeqAddActivity.REQUEST_ADD_TASK:
                             ListDrawer.drawSequence(map,SeqAddActivity.list.getTasks());
                             break;
+                        case GroupEditActivity.REQUEST_ADD_TASK:
+                            ListDrawer.drawGroup(map, GroupAddActivity.list.getTasks());
+                            break;
+                        case SeqEditActivity.REQUEST_ADD_TASK:
+                            ListDrawer.drawSequence(map,SeqAddActivity.list.getTasks());
+                            break;
                     }
                 }
 
@@ -121,6 +129,20 @@ public class SoloAddActivity extends AppCompatActivity {
                     finish();
 
                 } else if (requestCode == GroupAddActivity.REQUEST_ADD_TASK) {
+                    System.out.println(SoloAddActivity.this.latLng.latitude);
+                    resultData.putExtra("desc", etDesc.getText().toString());
+                    resultData.putExtra("lat", SoloAddActivity.this.latLng.latitude);
+                    resultData.putExtra("lng", SoloAddActivity.this.latLng.longitude);
+                    setResult(Activity.RESULT_OK, resultData);
+                    finish();
+                } else if (requestCode == SeqAddActivity.REQUEST_ADD_TASK) {
+                    System.out.println(SoloAddActivity.this.latLng.latitude);
+                    resultData.putExtra("desc", etDesc.getText().toString());
+                    resultData.putExtra("lat", SoloAddActivity.this.latLng.latitude);
+                    resultData.putExtra("lng", SoloAddActivity.this.latLng.longitude);
+                    setResult(Activity.RESULT_OK, resultData);
+                    finish();
+                } else if (requestCode == GroupEditActivity.REQUEST_ADD_TASK) {
                     System.out.println(SoloAddActivity.this.latLng.latitude);
                     resultData.putExtra("desc", etDesc.getText().toString());
                     resultData.putExtra("lat", SoloAddActivity.this.latLng.latitude);

@@ -26,10 +26,11 @@ public class SeqEditActivity extends AppCompatActivity {
     public static final int REQUEST_ADD_TASK = 5;
     public static final int REQUEST_EDIT_TASK = 6;
 
-    List list;
+    public static List list;
     EditText etListName;
     Button applyButton, addTask;
     RecyclerView rvTasks;
+    SeqTasksAddAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +45,7 @@ public class SeqEditActivity extends AppCompatActivity {
         int listId = getIntent().getExtras().getInt("listId");
         list = MainActivity.db.queryList(listId);
 
-        SeqTasksAddAdapter adapter = new SeqTasksAddAdapter(list, this);
+        adapter = new SeqTasksAddAdapter(list, this);
 
         rvTasks.setAdapter(adapter);
         rvTasks.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL, false));
@@ -80,20 +81,39 @@ public class SeqEditActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        String desc;
+        double lat,lng;
+        int position;
+
         if(resultCode == RESULT_OK) {
             switch (requestCode) {
                 case REQUEST_ADD_TASK:
-                    String desc = data.getStringExtra("desc");
-                    double lat = Double.parseDouble(data.getStringExtra("lat"));
-                    double lng = Double.parseDouble(data.getStringExtra("lng"));
+                    desc = data.getStringExtra("desc");
+                    lat = data.getDoubleExtra("lat",0);
+                    lng = data.getDoubleExtra("lng",0);
 
                     Task newTask = new Task();
                     newTask.setDone(false);
-                    newTask.setDescription(desc);
+                    newTask.setSeq(-1);
                     newTask.setLatitude(lat);
                     newTask.setLongtitude(lng);
-                    newTask.setListId(-1);
+                    newTask.setDescription(desc);
                     list.addTasks(newTask);
+                    System.out.println(list.getTasks().size());
+                    adapter.notifyItemInserted(list.getTasks().size() - 1);
+                    break;
+                case REQUEST_EDIT_TASK:
+                    desc = data.getStringExtra("desc");
+                    lat = data.getDoubleExtra("lat",0);
+                    lng = data.getDoubleExtra("lng",0);
+
+                    position = data.getIntExtra("position",0);
+
+                    Task task = list.getTasks().get(position);
+                    task.setDescription(desc);
+                    task.setLatitude(lat);
+                    task.setLongtitude(lng);
+                    adapter.notifyItemChanged(position);
                     break;
             }
         }

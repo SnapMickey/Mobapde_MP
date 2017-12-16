@@ -88,12 +88,16 @@ public class GroupAddActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        String desc;
+        double lat,lng;
+        int position;
+
         if(resultCode == RESULT_OK) {
             switch (requestCode) {
                 case REQUEST_ADD_TASK:
-                    String desc = data.getStringExtra("desc");
-                    double lat = data.getDoubleExtra("lat",0);
-                    double lng = data.getDoubleExtra("lng",0);
+                    desc = data.getStringExtra("desc");
+                    lat = data.getDoubleExtra("lat",0);
+                    lng = data.getDoubleExtra("lng",0);
 
                     Task newTask = new Task();
                     newTask.setDone(false);
@@ -106,6 +110,20 @@ public class GroupAddActivity extends AppCompatActivity {
                     adapter.notifyItemInserted(list.getTasks().size() - 1);
                     break;
                 case REQUEST_EDIT_TASK:
+                    desc = data.getStringExtra("desc");
+                    lat = data.getDoubleExtra("lat",0);
+                    lng = data.getDoubleExtra("lng",0);
+
+                    position = data.getIntExtra("position",0);
+
+                    Task task = new Task();
+                    task.setDone(false);
+                    task.setSeq(-1);
+                    task.setLatitude(lat);
+                    task.setLongtitude(lng);
+                    task.setDescription(desc);
+                    list.getTasks().add(position,task);
+                    adapter.notifyItemChanged(position);
                     break;
             }
         }

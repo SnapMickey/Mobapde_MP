@@ -71,6 +71,10 @@ public class MainActivity extends AppCompatActivity
 
         db = new DatabaseHelper(getBaseContext());
 
+        for(Task task : db.queryAllTasks()){
+            db.deleteTask(task.getTaskId());
+        }
+
         gps = new GPSTracker(getApplicationContext());
         mLocation = gps.getLocation();
         System.out.println(mLocation);
