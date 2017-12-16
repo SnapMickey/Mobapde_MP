@@ -26,7 +26,7 @@ public class ViewTasks extends AppCompatActivity {
 
     private SectionsPageAdapter mSectionsPageAdapter;
 
-    private ViewPager mViewPager;
+    private CustomViewPager mViewPager;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,7 +44,8 @@ public class ViewTasks extends AppCompatActivity {
         mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
 
         //
-        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager = (CustomViewPager) findViewById(R.id.container);
+        mViewPager.setPagingEnabled(false);
         setupViewPager(mViewPager);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
