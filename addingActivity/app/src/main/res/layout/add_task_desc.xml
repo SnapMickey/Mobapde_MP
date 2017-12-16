@@ -33,7 +33,7 @@
         >
     </fragment>
 
-    <TextView
+    <!--<TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="Task Description"
@@ -41,7 +41,7 @@
         android:id="@+id/tv_taskDesc"
         android:layout_marginTop="10dp"
         />
-
+-->
     <EditText
         android:id="@+id/taskDesc"
         style="@style/AppTheme.AppBarOverlay"
@@ -50,6 +50,7 @@
         android:layout_below="@+id/appbar"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="15dp"
+        android:hint="Task Description"
         android:clickable="false">
         <!-- UHHMM ADD MAP HERE???-->
 

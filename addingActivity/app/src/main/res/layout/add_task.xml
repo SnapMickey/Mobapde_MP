@@ -4,7 +4,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FF593C"
     >
 
     <RelativeLayout
@@ -32,7 +31,7 @@
             android:text="Add Tasks"
             android:id="@+id/screenLabel"
             android:textSize="30dp"
-            android:textColor="#ffffff"
+            android:textColor="#FF593C"
             android:layout_below="@+id/appbar"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
@@ -44,7 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_below="@+id/screenLabel"
-            android:background="#BA4134"
+            android:background="#FF593C"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
@@ -56,7 +55,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_below="@+id/solotaskBtn"
-            android:background="#BA4134"
+            android:background="#FF593C"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
@@ -69,7 +68,7 @@
             android:layout_height="50dp"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/grouptaskBtn"
-            android:background="#BA4134"
+            android:background="#FF593C"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
