@@ -12,14 +12,17 @@ import android.widget.TextView;
 
 import com.example.jared.addingactivity.List;
 import com.example.jared.addingactivity.R;
+import com.example.jared.addingactivity.SimpleItemTouchHelperCallback;
 import com.example.jared.addingactivity.Solo.SoloEditActivity;
 import com.example.jared.addingactivity.Task;
+
+import java.util.Collections;
 
 /**
  * Created by Jared on 12/12/2017.
  */
 
-public class SeqTasksAddAdapter extends RecyclerView.Adapter<SeqTasksAddAdapter.SeqAddTaskViewHolder> {
+public class SeqTasksAddAdapter extends RecyclerView.Adapter<SeqTasksAddAdapter.SeqAddTaskViewHolder> implements SimpleItemTouchHelperCallback.ItemTouchHelperAdapter{
 
     private List list;
     private Activity activity;
@@ -43,20 +46,15 @@ public class SeqTasksAddAdapter extends RecyclerView.Adapter<SeqTasksAddAdapter.
         holder.tvTaskDescription.setText(task.getDescription());
         holder.tvSeq.setText("" + position);
 
-        holder.btnRemove.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                list.getTasks().remove(index);
-                SeqTasksAddAdapter.this.notifyItemRemoved(index);
-            }
-        });
-
         holder.btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent page = new Intent(activity,SoloEditActivity.class);
                 page.putExtra("requestCode", SeqAddActivity.REQUEST_EDIT_TASK);
                 page.putExtra("position", index);
+                page.putExtra("desc", task.getDescription());
+                page.putExtra("lat", task.getLatitude());
+                page.putExtra("lng", task.getLongtitude());
                 activity.startActivityForResult(page, SeqAddActivity.REQUEST_EDIT_TASK);
             }
         });
@@ -67,9 +65,35 @@ public class SeqTasksAddAdapter extends RecyclerView.Adapter<SeqTasksAddAdapter.
         return list.getTasks().size();
     }
 
+    @Override
+    public void onItemMove(int fromPosition, int toPosition) {
+        Task temp = list.getTasks().get(fromPosition);
+        list.getTasks().set(fromPosition,list.getTasks().get(toPosition));
+        list.getTasks().set(toPosition, temp);
+
+        list.getTasks().get(fromPosition).setSeq(toPosition);
+        list.getTasks().get(toPosition).setSeq(fromPosition);
+
+        notifyItemMoved(fromPosition,toPosition);
+    }
+
+    @Override
+    public void onItemDismiss(int position) {
+
+
+        list.removeTasks(position);
+        notifyItemRemoved(position);
+
+        for(int i = position; i < list.getTasks().size();i++){
+            list.getTasks().get(i).setSeq(list.getTasks().get(i).getSeq()-1);
+            notifyItemChanged(position);
+        }
+
+    }
+
     /** VIEW HOLDER */
     public class SeqAddTaskViewHolder extends RecyclerView.ViewHolder{
-        Button btnRemove, btnEdit;
+        Button btnEdit;
         TextView tvTaskDescription;
         TextView tvSeq;
         View container;
@@ -78,7 +102,6 @@ public class SeqTasksAddAdapter extends RecyclerView.Adapter<SeqTasksAddAdapter.
             super(itemView);
             tvTaskDescription = itemView.findViewById(R.id.taskDesc);
             tvSeq = itemView.findViewById(R.id.taskNum);
-            btnRemove = itemView.findViewById(R.id.btn_deletetask);
             btnEdit = itemView.findViewById(R.id.btn_edittask);
             container = itemView;
         }

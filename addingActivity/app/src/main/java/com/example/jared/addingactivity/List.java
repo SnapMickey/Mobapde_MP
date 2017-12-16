@@ -83,6 +83,14 @@ public class List {
         tasks.add(t);
     }
 
+    public Task getTask(int taskId){
+        for(Task t :tasks){
+            if(t.taskId == taskId)
+                return t;
+        }
+        return null;
+    }
+
     public void removeTasks(int taskId){
         tasks.remove(taskId);
     }

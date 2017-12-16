@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,6 +15,7 @@ import com.example.jared.addingactivity.DatabaseHelper;
 import com.example.jared.addingactivity.List;
 import com.example.jared.addingactivity.MainActivity;
 import com.example.jared.addingactivity.R;
+import com.example.jared.addingactivity.SimpleItemTouchHelperCallback;
 import com.example.jared.addingactivity.Solo.SoloAddActivity;
 import com.example.jared.addingactivity.Task;
 
@@ -56,6 +58,11 @@ public class SeqAddActivity extends AppCompatActivity {
         rvTasks.setAdapter(adapter);
         rvTasks.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL, false));
 
+        ItemTouchHelper.Callback callback =
+                new SimpleItemTouchHelperCallback(adapter);
+        ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
+        touchHelper.attachToRecyclerView(rvTasks);
+
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -87,15 +94,20 @@ public class SeqAddActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        String desc;
+        double lat,lng;
+        int position;
+
         if(resultCode == RESULT_OK) {
             switch (requestCode) {
                 case REQUEST_ADD_TASK:
-                    String desc = data.getStringExtra("desc");
-                    double lat = data.getDoubleExtra("lat",0);
-                    double lng = data.getDoubleExtra("lng",0);
+                    desc = data.getStringExtra("desc");
+                    lat = data.getDoubleExtra("lat",0);
+                    lng = data.getDoubleExtra("lng",0);
 
                     Task newTask = new Task();
                     newTask.setDone(false);
+                    newTask.setSeq(-1);
                     newTask.setLatitude(lat);
                     newTask.setLongtitude(lng);
                     newTask.setDescription(desc);
@@ -104,6 +116,20 @@ public class SeqAddActivity extends AppCompatActivity {
                     adapter.notifyItemInserted(list.getTasks().size() - 1);
                     break;
                 case REQUEST_EDIT_TASK:
+                    desc = data.getStringExtra("desc");
+                    lat = data.getDoubleExtra("lat",0);
+                    lng = data.getDoubleExtra("lng",0);
+
+                    position = data.getIntExtra("position",0);
+
+                    Task task = new Task();
+                    task.setDone(false);
+                    task.setSeq(-1);
+                    task.setLatitude(lat);
+                    task.setLongtitude(lng);
+                    task.setDescription(desc);
+                    list.getTasks().add(position,task);
+                    adapter.notifyItemChanged(position);
                     break;
             }
         }
